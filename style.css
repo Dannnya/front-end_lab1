@@ -1,17 +1,19 @@
 body{
     margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* HEADER */
 header {
     background-color: #0b1c51;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 header h1 {
     font-size: 52px;
     color: white;
     text-align: center;
-    margin: 0;
+    margin: auto;
     padding-top: 20px;
     font-family: "Montserrat", Courier, monospace;
 }
@@ -46,9 +48,6 @@ header nav ul li:last-child a {
         padding: 0 30px;
     }
 
-
-
-
     header h1 {
         margin: 14px 0;
         padding-top: 0;
@@ -63,3 +62,94 @@ header nav ul li:last-child a {
         color: #bdbdbd;
     }
 }
+
+ /* MAIN */
+.main-text__intro{
+    margin: 2rem 49rem 0 10rem;
+    text-decoration:underline;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .intro-text__main{
+
+    background-color: #287bb3; */
+
+
+.main-text__second{
+
+    margin-left: 10rem;
+    margin-right: 40rem;
+    text-decoration: double;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* apple-image__main */
+.apple-image__main{
+    margin: 3rem 10rem 0 10rem ;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 7rem;
+}
+
+.image{
+    width: 550px;
+}
+
+.li-text{
+    display: flex;
+    gap: 23rem;
+    margin: 0 10rem 3rem 10rem ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*  START TABLE */
+.table-comparing__iphone h4{
+ margin-left: 10rem;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-left: 37rem;
+}
+
+caption {
+    caption-side: bottom;
+    padding: 10px;
+    font-weight: bold;
+}
+
+thead,
+tfoot {
+    background-color: rgb(228 240 245);
+}
+
+th,
+td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+}
+
+td:last-of-type {
+    text-align: center;
+}
+
+tbody>tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+
+tfoot th {
+    text-align: right;
+}
+
+tfoot td {
+    font-weight: bold;
+}
+/* END TABLE */
+
+/* START FORM  */
+
+/* END FORM  */
