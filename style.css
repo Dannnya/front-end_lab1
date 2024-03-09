@@ -152,4 +152,42 @@ tfoot td {
 
 /* START FORM  */
 
+.form-div{
+    margin-top: 4rem;
+    margin-left: 35rem;
+}
+
+form.form-example {
+    display: table;
+}
+
+div.form-example {
+    display: table-row;
+}
+
+label,
+input {
+    display: table-cell;
+    margin-bottom: 10px;
+}
+
+label {
+    padding-right: 10px;
+}
+
+.box {
+    animation: 5s show ease;
+}
+
+
 /* END FORM  */
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

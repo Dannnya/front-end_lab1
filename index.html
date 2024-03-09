@@ -23,13 +23,15 @@
     </header>
     <!-- END HEADER REGION -->
 
-   <main class="main-container">
+    <!-- START MAIN REGION -->
+
+   <main class="main-container " id="news">
     <div class="intro-text__main">
-    <h1 class="main-text__intro">Blog about Apple technologies</h1>
-    <h3 class="main-text__second">We share the last news about Apple and their brand new staff</h3> 
+    <h1 class="main-text__intro box">Blog about Apple technologies</h1>
+    <h3 class="main-text__second box">We share the last news about Apple and their brand new staff</h3> 
     </div>
 
-    <div class="apple-image__main">
+    <div class="apple-image__main" >
         <img src="img/apple.webp" alt="apple-image">
         <!-- <h4> April 2023 </h4> <br> -->
         <p class="right-text"> <strong>April 2023</strong> <br> <br>
@@ -77,6 +79,8 @@
         </ol>
     </div>
     </div>
+    <!-- END MAIN REGION -->
+
     <div class="table-comparing__iphone">
         <!-- START TABLE REGION -->
 <table>
@@ -126,12 +130,58 @@
 </table>
     </div>
         <!-- END TABLE REGION -->
-    <div class="form-user">
-        <h3>You can send us the latest news in this form:</h3>
-        <form action="post">
 
-        </form>
+        <!-- START FORM REGION -->
+    <div class="form-div" id="contact">
+        <h3>You can send us the latest news in this form:</h3>
+<form action="" method="get" class="form-example">
+    <div class="form-example">
+        <label for="name">Enter your name: </label>
+        <input type="text" name="name" id="name" required />
     </div>
+    <div class="form-example">
+        <label for="email">Enter your email: </label>
+        <input type="email" name="email" id="email" required />
+    </div>
+       <div class="form-example">
+        <label for="news">Enter your news: </label>
+        <!-- <input type="news" name="news" id="news" required /> -->
+        <textarea  name="News" id="News" cols="20" rows=5"></textarea>
+     </div>
+
+    <div class="form-example">
+        <label for="email">Enter your date of news: </label>
+        <input type="date" name="date" id="date" required />
+    </div>
+    <div class="form-example">
+        <label for="file">File for reading: </label>
+        <input type="file"" name="file" id="file" required />
+    </div>
+<fieldset class="form-example">
+    <legend>Select type of news:</legend>
+
+    <div class="form-example">
+        <input type="radio" id="huey" name="drone" value="huey" checked />
+        <label for="huey">Main</label>
+    </div>
+
+    <div class="form-example">
+        <input type="radio" id="dewey" name="drone" value="dewey" />
+        <label for="dewey">Middle</label>
+    </div>
+
+    <div class="form-example">
+        <input type="radio" id="louie" name="drone" value="louie" />
+        <label for="louie">Extra</label>
+    </div>
+</fieldset>
+
+    <div class="form-example">
+        <input type="submit" value="Send" />
+    </div>
+</form>
+    </div>
+    <!-- END FORM REGION -->
    </main>
 </body>
 </html>
