@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Game</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gilroy";
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(202, 237, 202);
+}
+
+#pannel {
+  overflow: hidden;
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  background-color: aliceblue;
+}
+#ptop {
+  padding: 0px 30%;
+  justify-content: space-between;
+  display: flex;
+  color: white;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: rgb(0, 136, 0);
+}
+.elem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.box {
+  color: rgb(0, 118, 26);
+  font-weight: 600;
+  padding: 10px;
+  font-size: 22px;
+  background-color: #ffff;
+  border-radius: 5px;
+}
+#pbtm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding-left: 10px;
+  gap: 10px;
+  width: 100%;
+  height: calc(100%-100px);
+}
+
+.bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: rgb(41, 97, 39);
+  border-radius: 50%;
+  color: white;
+  font-weight: 500;
+}
+
+.elem h2 {
+  font-weight: 500;
+  font-size: 22px;
+}
+.bubble:hover {
+  background-color: green;
+  cursor: pointer;
+}
+</style>
+    <div id="main">
+        <div id="pannel">
+            <div id="ptop">
+                <div class="elem">
+                    <h2>Hit</h3>
+                        <div id="hitval" class="box">5</div>
+                </div>
+                <div class="elem">
+                    <h2>Timer</h3>
+                        <div id="timerval" class="box">60</div>
+                </div>
+                <div class="elem">
+                    <h2>Score</h3>
+                        <div id="scoreval" class="box">0</div>
+                </div>
+            </div>
+            <div id="pbtm">
+            </div>
+        </div>
+        </div>
+        <div id="leaderboards">
+            <h2>Leaderboards</h2>
+            <div id="best">
+                <h3>Best Scores</h3>
+                <ol id="best-scores"></ol>
+            </div>
+            <div id="worst">
+                <h3>Worst Scores</h3>
+                <ol id="worst-scores"></ol>
+            </div>
+        </div>
+    <button onclick="startNewGame()">Start New Game</button>
+
+    </div>
+
+<script>
+    var timer = 10;
+    var score = 0;
+    var hitrn = 0;
+    var scores = []; // Зберігаємо історію результатів
+
+    // Отримання даних із localStorage, якщо вони є
+    if (localStorage.getItem('scores')) {
+        scores = JSON.parse(localStorage.getItem('scores'));
+    }
+
+    function makeBubble() {
+        var clutter = "";
+        for (var i = 0; i <= 186; i++) {
+            var rn = Math.floor(Math.random() * 10)
+            clutter += `<div class="bubble">${rn}</div>`;
+        }
+        document.querySelector("#pbtm").innerHTML = clutter;
+    }
+
+    function runTimer() {
+        var timerint = setInterval(function () {
+            if (timer > 0) {
+                timer--;
+                document.querySelector("#timerval").textContent = timer;
+            } else {
+                clearInterval(timerint);
+                document.querySelector("#pbtm").innerHTML = `<h1> Game Over </h1>`;
+                // Після завершення гри додаємо результат до історії та зберігаємо в localStorage
+                scores.push(score);
+                scores.sort(function(a, b){return b - a}); // Сортуємо за спаданням
+                localStorage.setItem('scores', JSON.stringify(scores));
+                displayScores();
+            }
+        }, 1000);
+    }
+
+    function getNewHit() {
+        hitrn = Math.floor(Math.random() * 10);
+        document.querySelector("#hitval").textContent = hitrn;
+    }
+
+    function increaseScore() {
+        score += 10;
+        document.querySelector("#scoreval").textContent = score;
+    }
+
+    function displayScores() {
+        var bestScores = scores.slice(0, 3);
+        var worstScores = scores.slice(-3);
+        var bestList = document.getElementById("best-scores");
+        var worstList = document.getElementById("worst-scores");
+        bestList.innerHTML = "";
+        worstList.innerHTML = "";
+        bestScores.forEach(function (score, index) {
+            var listItem = document.createElement("li");
+            listItem.textContent = "Score " + (index + 1) + ": " + score;
+            bestList.appendChild(listItem);
+        });
+        worstScores.forEach(function (score, index) {
+            var listItem = document.createElement("li");
+            listItem.textContent = "Score " + (scores.length - 2 - index) + ": " + score;
+            worstList.appendChild(listItem);
+        });
+    }
+
+    document.querySelector("#pbtm").addEventListener("click", function (e) {
+        var clickNumber = (Number(e.target.textContent));
+        if (clickNumber == hitrn) {
+            increaseScore();
+            makeBubble();
+            getNewHit();
+        }
+    });
+
+    function startNewGame() {
+        // Скидаємо таймер, рахунок і обновлюємо гру
+        timer = 10;
+        score = 0;
+        document.querySelector("#timerval").textContent = timer;
+        document.querySelector("#scoreval").textContent = score;
+        makeBubble();
+        runTimer();
+        getNewHit();
+    }
+
+    runTimer();
+    makeBubble();
+    getNewHit();
+</script>
+
+
+
+</body>
+
+</html>
